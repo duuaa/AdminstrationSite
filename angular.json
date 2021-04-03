@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/minireset.css/minireset.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,9 +92,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ]
           }
         },
         "lint": {
@@ -120,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "studentProject"
+  "defaultProject": "studentProject",
+  "cli": {
+    "analytics": false
+  }
 }
