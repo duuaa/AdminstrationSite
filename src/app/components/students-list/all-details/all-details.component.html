@@ -1,1 +1,12 @@
-<p>all-details works!</p>
+<app-header></app-header>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of allstudents">
+            <<div class="card col-md-3" >
+                <img mat-card-image src={{student.avatar}}>
+                <h4><b>{{student.first_name}} {{student.last_name}} </b></h4>
+                <p>{{student.email}}</p>
+                <button (click)="parseid(student)">show details</button>
+        </div>
+    </div>
+</div>

@@ -1,33 +1,44 @@
 
+//modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+//services
 
-import { StudentService } from './shared/services/student.service';
 import { AuthService } from './shared/services/auth.service';
 
-
+//components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
+//guard
 import { AuthGuard } from './shared/guards/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+    HttpClientModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [
-    StudentService,
     AuthService,
-    AuthGuard 
+    AuthGuard
+
   ],
   bootstrap: [AppComponent]
 })

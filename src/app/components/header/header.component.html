@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" routerLink="/student_list">Administration</a>
+  
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button> <!-- collapse button  -->
+
+   
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/student_list" aria-current="page">All Students </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/student_list/all_details" >All Details</a>
+        </li>
+      </ul>  <!-- navbar list  -->
+    </div> <!-- div -->
+    
+
+    <ul class="nav navbar-nav navbar-right text-white">
+      <li><a (click)=" dologout()"><span class="glyphicon glyphicon-log-in "></span> Logout</a></li>
+    </ul><!-- navbar right list  -->
+  
+  </nav> <!-- navbar -->

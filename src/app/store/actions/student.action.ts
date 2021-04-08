@@ -12,7 +12,7 @@ export class SuccessAction {
     payload: any;
 
     constructor(payload: any) {
-        this.payload = payload;
+        this.payload = payload.data;
     }
 
 }

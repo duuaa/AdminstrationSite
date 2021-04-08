@@ -2,7 +2,11 @@ import { ActionReducerMap } from '@ngrx/store';
 import { Student ,StudentReducer } from './reducers/students.reducer';
 
 export interface StoreInterface {
-   students: Student[]
+    
+    data: {
+        students: Student[]
+      }
+   
 }
 
  
@@ -10,6 +14,7 @@ export interface CustomAction {
     type: string,
     payload: any
 }
-export const reducers: ActionReducerMap<StoreInterface> = {
-    students: StudentReducer
+export const reducers: ActionReducerMap<any> = {
+    students: StudentReducer,
+
 }

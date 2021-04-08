@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs';
-import * as deepEqual from "deep-equal";
+
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class AuthService {
     username: "",
     password: ""
   }
-  constructor() {
+  constructor(private route:Router) {
     this.loadUserInfo();
   }
 
@@ -48,7 +49,7 @@ export class AuthService {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
 
       localStorage.setItem('currentUser', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjM0In0.rSE93wQJ4oBA1r81PfUnhuXeJsRfFm4NnpT_IjIC190');
-
+      this.route.navigate(['student_list']);
       console.log(this.userInfo);
       return this.loggedinuser;
     } else {
@@ -57,8 +58,10 @@ export class AuthService {
 
   }
 
-  // logout() {
-  //     // remove user from local storage to log user out
-  //     localStorage.removeItem('currentUser');
-  // }
+  logout() {
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.userInfo=null
+
+  }
 }

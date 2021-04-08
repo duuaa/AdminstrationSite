@@ -10,7 +10,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   model: FormGroup;
+
   @ViewChild('f') loginFormDirective;
+
   formErrors = {
     'username': '',
     'password': ''
@@ -25,17 +27,12 @@ export class LoginComponent implements OnInit {
       'required': 'password is required.'
     }
   };
-  loading: boolean;
-  //returnUrl: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService,
-    private form: FormBuilder
-  ) {
+  constructor(private route: ActivatedRoute,private router: Router,
+    private authService: AuthService,private form: FormBuilder) {
     this.createForm();
   }
+
   createForm() {
     this.model = this.form.group({
       username: ['', [Validators.required]],
@@ -69,16 +66,10 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnInit() {
-    // reset login status
-    //this.authenticationService.logout();
 
-    // get return url from route parameters or default to '/'
-    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
-         this.loading = true;
-         this.authService.login(this.model.value.username, this.model.value.password)
-         //this.router.navigate([this.returnUrl]);
+         this.authService.login(this.model.value.username, this.model.value.password);
   }
 }
