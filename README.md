@@ -1,4 +1,7 @@
 # README File For AdminstartionSite
+## to get Login in the Adminstration site you should use
+ # Username: Admin
+ # Password: 1234
 
 # StudentProject
 
