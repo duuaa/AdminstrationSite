@@ -1,12 +1,18 @@
 <app-header></app-header>
-<div class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of allstudents">
-            <<div class="card col-md-3" >
-                <img mat-card-image src={{student.avatar}}>
-                <h4><b>{{student.first_name}} {{student.last_name}} </b></h4>
-                <p>{{student.email}}</p>
-                <button (click)="parseid(student)">show details</button>
+
+<div class="container" *ngIf="cond">
+    <div class="row justify-content-center" >
+        <div class="col-md-4 .col-lg-3 mx-auto mt-4 mb-4 col-sm-6 	.col-8"  *ngFor="let student of students">
+            <div class="card profile-card-5" [@expand]>
+                <div class="card-img-block">
+                    <img class="card-img-top" src="{{student.avatar}}" alt="Card image cap">
+                </div>
+                <div class="card-body pt-0">
+                    <h5 class="card-title">{{student.first_name}} {{student.last_name}}</h5>
+                    <p class="card-text">{{student.email}}</p>
+                    <a (click)="parseid(student)" class="btn btn-dark" style="color: white;" [routerLink]="['./student-list/profile']">Show profile</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

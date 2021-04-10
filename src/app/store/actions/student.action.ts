@@ -4,23 +4,19 @@ export const LOAD = '[students] load';
 
 export class LoadStudentsAction {
     type: string = LOAD;
-
 }
 
 export class SuccessAction {
     type: string = SUCCESS;
     payload: any;
-
     constructor(payload: any) {
-        this.payload = payload.data;
+        this.payload = payload;
     }
-
 }
 
 export class FailedAction {
     type: string = FAILED;
     payload: any;
-
     constructor(payload: any) {
         this.payload = payload;
     }

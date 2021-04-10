@@ -2,10 +2,17 @@ import { ActionReducerMap } from '@ngrx/store';
 import { Student ,StudentReducer } from './reducers/students.reducer';
 
 export interface StoreInterface {
-    
-    data: {
-        students: Student[]
-      }
+
+    page:Number,
+    per_page:Number,
+    total:Number,
+    total_pages:Number,
+    data: Student[],
+    support:{
+        url:string,
+        text:string
+    }
+      
    
 }
 

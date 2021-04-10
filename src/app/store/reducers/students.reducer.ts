@@ -7,11 +7,7 @@ export interface Student {
     first_name: string,
     last_name:string,
     avatar:string
-
-
 }
-
-
 export function StudentReducer(state: Student[], action: CustomAction) {
     switch (action.type) {
         case SUCCESS:

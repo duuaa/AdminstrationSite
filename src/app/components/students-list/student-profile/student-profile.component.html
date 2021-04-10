@@ -1,4 +1,17 @@
-<div>
-    <h1>{{student.first_name}}</h1>
-
-</div>
+<app-header></app-header>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mx-auto mt-4 mb-4 col-sm-8" [@expand]>
+            <div class="card profile-card-5">
+                <div class="card-img-block">
+                    <img class="card-img-top" src="{{student.avatar}}" alt="Card image cap">
+                </div><!-- card-image -->
+                <div class="card-body pt-0">
+                    <h5 class="card-title">{{student.first_name}} {{student.last_name}}</h5>
+                    <p class="card-text">{{student.email}}</p>
+                    <a [routerLink]="['/student_list']" class="btn btn-dark" style="color: white;">Go to Allstudents</a>
+                </div><!-- card body -->
+            </div> <!-- Card -->
+        </div>
+    </div><!-- row -->
+</div><!-- container -->

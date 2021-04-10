@@ -1,3 +1,5 @@
+import { AuthGuard } from './../../shared/guards/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +17,7 @@ import { StudentssEffect } from 'src/app/store/effects/students.effect';
 import { EffectsModule } from '@ngrx/effects';
 
 
+
 @NgModule({
   declarations: [
     StudentProfileComponent,
@@ -26,7 +29,7 @@ import { EffectsModule } from '@ngrx/effects';
     CommonModule,
     StudentRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,HttpClientModule
     ,StoreModule.forRoot(reducers)
     , EffectsModule.forRoot([StudentssEffect]),
   ],

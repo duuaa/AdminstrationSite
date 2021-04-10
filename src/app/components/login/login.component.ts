@@ -13,11 +13,12 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('f') loginFormDirective;
 
+  //form object with username and password
   formErrors = {
     'username': '',
     'password': ''
   };
-
+//validation message to handle wrong input 
   validationMessages = {
     'username': {
       'required': 'username is required.',
@@ -27,17 +28,17 @@ export class LoginComponent implements OnInit {
       'required': 'password is required.'
     }
   };
-
-  constructor(private route: ActivatedRoute,private router: Router,
-    private authService: AuthService,private form: FormBuilder) {
+//inject the services to use its functions
+  constructor(private router: Router, private authService: AuthService, private form: FormBuilder) {
     this.createForm();
+    //logout to remove the stored data in localstorage
+    this.authService.logout();
   }
-
+//creat the form by decalaring it with form builder
   createForm() {
     this.model = this.form.group({
       username: ['', [Validators.required]],
-      password:  ['', [Validators.required]]
-
+      password: ['', [Validators.required]]
     });
 
     this.model.valueChanges
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.onValueChanged(); // (re)set validation messages now
 
   }
+  //here i handle the order of validation messages 
   onValueChanged(data?: any) {
     if (!this.model) { return; }
     const form = this.model;
@@ -65,11 +67,9 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
+//when user try to login must verfiy from the auth service is he autherized
   login() {
-         this.authService.login(this.model.value.username, this.model.value.password);
+    this.authService.login(this.model.value.username, this.model.value.password);
   }
 }

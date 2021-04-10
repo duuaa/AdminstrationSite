@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 
 //guard
 import { AuthGuard } from './shared/guards/auth.guard';
+import { MainGuard } from './shared/guards/main.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    MainGuard
 
   ],
   bootstrap: [AppComponent]

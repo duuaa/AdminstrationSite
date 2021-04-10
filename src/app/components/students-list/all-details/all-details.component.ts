@@ -1,39 +1,54 @@
-import { Route, Router } from '@angular/router';
-import { StudentService } from './../../../shared/services/student.service';
-
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewChecked} from '@angular/core';
+//services
+import { StudentService } from '../../../shared/services/student.service';
+//NGRX
 import { Store } from '@ngrx/store';
 import { StoreInterface } from 'src/app/store/store';
 import { LoadStudentsAction } from 'src/app/store/actions/student.action';
+//animation
+import { expand, flyInOut } from 'src/app/shared/animations/app.animation';
 
 @Component({
   selector: 'app-all-details',
   templateUrl: './all-details.component.html',
-  styleUrls: ['./all-details.component.css']
+  styleUrls: ['./all-details.component.css'],
+  host:{
+    '[@flyInOut]':'true',
+    'style':'display:block;'
+  },
+  animations:[
+    flyInOut(),
+    expand()
+  ]
 })
-export class AllDetailsComponent implements OnInit {
-
-  constructor(private studentService: StudentService, private store: Store<StoreInterface>,private router:Router) {
- 
-  }
+export class AllDetailsComponent implements OnInit, AfterViewChecked {
   data: any;
-  allstudents: any
+  response: any
+  students: any;
   cond: boolean = false;
-  ngOnInit(): void {
+
+  constructor(private studentService: StudentService, private store: Store<StoreInterface>) {
+    //dispatch the all student from the store.
     this.studentService.setStudentperPageNumber(12);
     this.store.dispatch(new LoadStudentsAction());
-    this.store.subscribe((data) => {
-      this.data = data;
-      this.allstudents = this.data.students;
-      this.cond = true;
+    this.store.subscribe((students) => {
+      this.data = students;
+      this.response = this.data.students
     });
   }
+  //after view checked it will the data loaded and can accessed
+  ngAfterViewChecked(): void {
+    if (this.response) {
+      this.students = this.response.data;
+      this.cond = true;
+    }
+  }
+  
+  ngOnInit(): void { }
 
-  parseid(student){
-    console.log(student,"parse id")
+  //parse the cuurent student to service to make it availble to another component
+  parseid(student) {
     this.studentService.setId(student.id);
-    console.log(student,"parse id")
-    this.router.navigate(['profile']);
   }
 
 }
