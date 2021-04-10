@@ -14,6 +14,7 @@ export class SingleStudentService {
   }
   getById(id: number): Observable<any> {
     //get the data from api url
+    console.log(this.http.get<object>(`https://reqres.in/api/users/3`).subscribe(value=>console.log(value)));
     return this.http.get<object>(`https://reqres.in/api/users/${id}`);
 
   }

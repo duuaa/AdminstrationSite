@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     }
   };
 //inject the services to use its functions
-  constructor(private router: Router, private authService: AuthService, private form: FormBuilder) {
+  constructor(private authService: AuthService, private form: FormBuilder) {
     this.createForm();
     //logout to remove the stored data in localstorage
     this.authService.logout();

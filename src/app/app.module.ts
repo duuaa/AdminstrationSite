@@ -16,9 +16,9 @@ import { AuthService } from './shared/services/auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
-//guard
+//guards
 import { AuthGuard } from './shared/guards/auth.guard';
-import { MainGuard } from './shared/guards/main.guard';
+
 
 @NgModule({
   declarations: [
@@ -38,8 +38,7 @@ import { MainGuard } from './shared/guards/main.guard';
   ],
   providers: [
     AuthService,
-    AuthGuard,
-    MainGuard
+    AuthGuard
 
   ],
   bootstrap: [AppComponent]

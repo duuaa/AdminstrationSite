@@ -14,20 +14,22 @@ export class StudentService {
   setPageNumber(num: Number) {
     this.pageNumber.next(num);
   }
-  setStudentperPageNumber(num: Number) {
-    this.per_page.next(num);
-  }
   getpageNumber() {
     return this.pageNumber.value;
   }
+  setStudentperPageNumber(num: Number) {
+    this.per_page.next(num);
+  }
+
   getnumberofstudent() {
     return this.per_page.value;
-  }
-  getId() {
-    return this.studentId.value;
   }
   setId(id: Number) {
     this.studentId.next(id)
 
   }
+  getId() {
+    return this.studentId.value;
+  }
+  
 }

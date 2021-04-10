@@ -17,6 +17,7 @@ import { StudentService } from 'src/app/shared/services/student.service';
   animations: [
     flyInOut(),
     expand()
+    
   ]    
 })
 export class StudentProfileComponent implements OnInit {

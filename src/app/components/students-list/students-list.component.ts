@@ -11,7 +11,7 @@ import { LoadStudentsAction } from 'src/app/store/actions/student.action';
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.css']
 })
-export class StudentsListComponent implements OnInit,AfterViewChecked {
+export class StudentsListComponent implements OnInit, AfterViewChecked {
 
   selected: number = 3;
   pageCount: number = 1;
@@ -32,19 +32,19 @@ export class StudentsListComponent implements OnInit,AfterViewChecked {
     this.studentService.setStudentperPageNumber(this.selected);
     this.store.dispatch(new LoadStudentsAction());
     this.store.subscribe((students) => {
-       this.data = students;
-       this.response=this.data.students
+      this.data = students;
+      this.response = this.data.students
     });
   }
-   //after view checked it will the data loaded and can accessed
+  //after view checked it will the data loaded and can accessed
   ngAfterViewChecked(): void {
-    if(this.response){
-      this.students=this.response.data;
-      this.cond=true;
+    if (this.response) {
+      this.students = this.response.data;
+      this.cond = true;
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   selectOption(id: number) {
     this.pageCount = 1;
@@ -55,41 +55,34 @@ export class StudentsListComponent implements OnInit,AfterViewChecked {
     this.store.dispatch(new LoadStudentsAction());
   }
   nextClicked() {
-    this.previousCond = false;
-    if (this.selected >= 6) {
-      if (this.pageCount == 2) {
-        console.log("page" + this.pageCount)
-        this.nextCond = true;
-      } else {
+    
+    if (this.response.total && this.response.page && this.response.per_page && this.response.total_pages) {
+      this.previousCond = false;
+      if (this.pageCount < this.response.total_pages) {
         this.pageCount += 1;
         this.studentService.setPageNumber(this.pageCount);
         this.store.dispatch(new LoadStudentsAction());
-      }
-    } else {
-      if (this.pageCount < (this.response.total / this.selected)) {
-        this.pageCount += 1;
-      }
-      if (this.pageCount == (this.response.total  / this.selected)) {
+      } else{
         this.nextCond = true;
       }
+    }
+  }
+  previousClicked() {
+    if (this.response.total && this.response.page && this.response.per_page && this.response.total_pages) {
+      this.nextCond = false;
+      this.pageCount -= 1;
+      this.previousCond = false;
       this.studentService.setPageNumber(this.pageCount);
       this.store.dispatch(new LoadStudentsAction());
+      if (this.pageCount == 1) {
+        this.previousCond = true;
+      }
     }
 
   }
-  previousClicked() {
-    this.nextCond = false;
-    this.pageCount -= 1;
-    this.previousCond = false;
-    this.studentService.setPageNumber(this.pageCount);
-    this.store.dispatch(new LoadStudentsAction());
-    if (this.pageCount == 1) {
-      this.previousCond = true;
-    }
-  }
-  
+
   //parse the cuurent student to service to make it availble to another component
-  parseid(student){
+  parseid(student) {
     this.studentService.setId(student.id);
   }
 

@@ -19,7 +19,7 @@ export class AuthService {
     this.loadUserInfo();
   }
 
-  loadUserInfo() {
+ private loadUserInfo() {
     const userdata = this.userInfo.getValue();
 
     if (!userdata) {
@@ -65,7 +65,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.userInfo.next(null)
     this.route.navigateByUrl('');
-    this.auth_contion = true;
+    this.auth_contion = false;
 
   }
 }
