@@ -24,7 +24,7 @@
         </thead>
         <tbody *ngFor="let student of students" class="p-3 mb-2 bg-info text-white">
           <tr>
-            <td class="py-1"><button (click)="parseid(student)" class="btn btn-dark" [routerLink]="['profile']"> show profile</button> </td>
+            <td class="py-1"><button (click)="parseid(student)" class="btn btn-dark" [routerLink]="['profile',student.id]"> show profile</button> </td>
             <td>{{student.first_name}} </td>
             <td>{{student.last_name}}</td>
           </tr>

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 //animation
@@ -23,15 +24,14 @@ import { StudentService } from 'src/app/shared/services/student.service';
 export class StudentProfileComponent implements OnInit {
 
   //inject services
-  constructor(private studentServices: StudentService, private singleStudentService: SingleStudentService) { }
-
+  constructor(private singleStudentService: SingleStudentService,private activatedRoute:ActivatedRoute) { }
+  
   student: any;
-  id:number;
+
   ngOnInit(): void {
     //get the student data from single-student service with getting the id from th student service
-    this.id=this.studentServices.getId();
-    this.singleStudentService.setUserId(this.id);
-    this.student = this.singleStudentService.getById(this.singleStudentService.userId.value).toPromise().then(
+
+    this.student = this.singleStudentService.getById(this.activatedRoute.snapshot.params.id).toPromise().then(
       data => {
         this.student = data.data
       });;

@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from 'src/app/store/store';
 import { StudentssEffect } from 'src/app/store/effects/students.effect';
 import { EffectsModule } from '@ngrx/effects';
+import { NotfouundComponent } from '../notfouund/notfouund.component';
 
 
 
@@ -23,7 +24,9 @@ import { EffectsModule } from '@ngrx/effects';
     StudentProfileComponent,
     StudentsListComponent,
     AllDetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotfouundComponent 
+
   ],
   imports: [
     CommonModule,

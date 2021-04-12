@@ -18,12 +18,14 @@ import { LoginComponent } from './components/login/login.component';
 
 //guards
 import { AuthGuard } from './shared/guards/auth.guard';
+import { NotfouundComponent } from './components/notfouund/notfouund.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+  
     
   ],
   imports: [
