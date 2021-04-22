@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject ,Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userInfo: BehaviorSubject<any> = new BehaviorSubject(null);
+  logoutCond: BehaviorSubject<boolean>=new BehaviorSubject(true);
   jwtHelper = new JwtHelperService();
-  auth_contion: boolean = false;
+  // auth_contion: boolean = false;
   loggedinuser = {
     username: "",
     password: "",
@@ -21,7 +22,6 @@ export class AuthService {
 
  private loadUserInfo() {
     const userdata = this.userInfo.getValue();
-
     if (!userdata) {
       const accesstoken = localStorage.getItem('currentUser');
       if (accesstoken) {
@@ -50,7 +50,7 @@ export class AuthService {
       localStorage.setItem('currentUser', this.loggedinuser.access_token);
       this.route.navigate(['student_list']);
       this.userInfo.next(this.loggedinuser);
-      this.auth_contion = true;
+      this.logoutCond.next(false);
       return true;
     } else {
 
@@ -63,9 +63,10 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.userInfo.next(null)
+    this.userInfo.next(null);
+    this.logoutCond.next(true);
     this.route.navigateByUrl('');
-    this.auth_contion = false;
+    // this.auth_contion = false;
 
   }
 }

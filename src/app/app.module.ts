@@ -25,7 +25,7 @@ import { NotfouundComponent } from './components/notfouund/notfouund.component';
   declarations: [
     AppComponent,
     LoginComponent,
-  
+    NotfouundComponent,
     
   ],
   imports: [
@@ -33,15 +33,13 @@ import { NotfouundComponent } from './components/notfouund/notfouund.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    
     HttpClientModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
     
   ],
   providers: [
     AuthService,
     AuthGuard
-
   ],
   bootstrap: [AppComponent]
 })

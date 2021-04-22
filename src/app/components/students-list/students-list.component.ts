@@ -1,23 +1,26 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 //services
 import { StudentService } from '../../shared/services/student.service';
 //NGRX
 import { Store } from '@ngrx/store';
 import { StoreInterface } from 'src/app/store/store';
 import { LoadStudentsAction } from 'src/app/store/actions/student.action';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.css']
 })
-export class StudentsListComponent implements OnInit, AfterViewChecked {
+export class StudentsListComponent implements OnInit,OnDestroy {
 
   selected: number = 3;
   pageCount: number = 1;
   students: any;
   data: any;
   response: any;
+  responseSub: Subscription;
   previousCond: boolean = true;
   nextCond: boolean = false;
   cond: boolean = false;
@@ -27,20 +30,19 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
     { id: 3, name: 9 },
     { id: 4, name: 12 },
   ];
-  constructor(private studentService: StudentService, private store: Store<StoreInterface>) {
+  constructor(private studentService: StudentService, private store: Store<StoreInterface>,private authService:AuthService) {
     this.studentService.setPageNumber(this.pageCount);
     this.studentService.setStudentperPageNumber(this.selected);
     this.store.dispatch(new LoadStudentsAction());
-    this.store.subscribe((students) => {
+    this.responseSub=this.store.subscribe((students) => {
       this.data = students;
       this.response = this.data.students
     });
+
   }
-  //after view checked it will the data loaded and can accessed
-  ngAfterViewChecked(): void {
-    if (this.response) {
-      this.students = this.response.data;
-      this.cond = true;
+  ngOnDestroy(): void {
+    if(this.authService.logoutCond.getValue()){
+      this.responseSub.unsubscribe();
     }
   }
 

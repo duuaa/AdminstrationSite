@@ -1,8 +1,8 @@
 <app-header></app-header>
 
-<div class="container" *ngIf="cond">
+<div class="container" *ngIf="response">
     <div class="row justify-content-center" >
-        <div class="col-md-4 .col-lg-3 mx-auto mt-4 mb-4 col-sm-6 	.col-8"  *ngFor="let student of students">
+        <div class="col-md-4 .col-lg-3 mx-auto mt-4 mb-4 col-sm-6 	.col-8"  *ngFor="let student of response.data">
             <div class="card profile-card-5" [@expand]>
                 <div class="card-img-block">
                     <img class="card-img-top" src="{{student.avatar}}" alt="Card image cap">

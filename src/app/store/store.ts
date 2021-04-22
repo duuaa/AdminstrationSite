@@ -2,7 +2,6 @@ import { ActionReducerMap } from '@ngrx/store';
 import { Student ,StudentReducer } from './reducers/students.reducer';
 
 export interface StoreInterface {
-
     page:Number,
     per_page:Number,
     total:Number,
@@ -11,12 +10,8 @@ export interface StoreInterface {
     support:{
         url:string,
         text:string
-    }
-      
-   
-}
-
- 
+    }  
+} 
 export interface CustomAction {
     type: string,
     payload: any

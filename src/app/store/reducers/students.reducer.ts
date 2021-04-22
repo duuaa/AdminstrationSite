@@ -13,7 +13,7 @@ export function StudentReducer(state: Student[], action: CustomAction) {
         case SUCCESS:
             return action.payload;
         case FAILED:
-            console.log('error-------', action.payload);
+            console.log('error', action.payload);
             return state;
 
     }

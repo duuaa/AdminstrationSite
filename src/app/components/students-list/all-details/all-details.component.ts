@@ -21,7 +21,7 @@ import { expand, flyInOut } from 'src/app/shared/animations/app.animation';
     expand()
   ]
 })
-export class AllDetailsComponent implements OnInit, AfterViewChecked {
+export class AllDetailsComponent implements OnInit {
   data: any;
   response: any
   students: any;
@@ -36,13 +36,7 @@ export class AllDetailsComponent implements OnInit, AfterViewChecked {
       this.response = this.data.students
     });
   }
-  //after view checked it will the data loaded and can accessed
-  ngAfterViewChecked(): void {
-    if (this.response) {
-      this.students = this.response.data;
-      this.cond = true;
-    }
-  }
+
   
   ngOnInit(): void { }
 
